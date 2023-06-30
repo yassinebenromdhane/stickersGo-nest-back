@@ -15,8 +15,8 @@
   ],
   "functions": {
     "api": {
-      "maxDuration": 30,
-      "entrypoint": "./"
+      "maxDuration": 60,
+      "entrypoint": "dist/*.js"
     }
   }
 }
