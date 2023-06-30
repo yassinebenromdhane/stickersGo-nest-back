@@ -17,5 +17,10 @@
                 "DELETE"
             ]
         }
-    ]
+    ],
+    "functions": {
+		"src/main.ts": {
+			"maxDuration": 100
+		}
+	}
 }
