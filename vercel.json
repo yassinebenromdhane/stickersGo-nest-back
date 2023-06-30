@@ -14,8 +14,9 @@
     }
   ],
   "functions": {
-    "src/*.ts": {
-      "maxDuration": 30
+    "api": {
+      "maxDuration": 30,
+      "entrypoint": "dist/main.js"
     }
   }
 }
