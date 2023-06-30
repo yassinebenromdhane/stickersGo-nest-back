@@ -20,7 +20,7 @@
     ],
     "functions": {
 		"src/main.ts": {
-			"maxDuration": 100
+			"maxDuration": 30
 		}
 	}
 }
