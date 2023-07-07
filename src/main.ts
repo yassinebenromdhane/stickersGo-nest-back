@@ -12,6 +12,7 @@ async function bootstrap() {
     .setDescription('StickersGo api ')
     .setVersion('1.0')
     .addTag('stickers')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);

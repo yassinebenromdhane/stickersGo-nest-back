@@ -26,9 +26,4 @@ export class AuthController {
     }
 
 
-
-
-
-
-
 }

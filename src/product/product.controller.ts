@@ -1,9 +1,11 @@
-import { Body, Controller, Delete, Get, Param, Post , Put} from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post , Put , Query, UseGuards} from '@nestjs/common';
 import { ProductService } from './product.service';
 import { Product } from './schema/product.schema';
 import { CreateProductDTO } from './dto/create-product-dto';
-import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { UpdateProductDTO } from './dto/update-product-dto';
+import { Query as ExpressQuery } from 'express-serve-static-core'
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('product')
 @ApiTags('Product Management')
@@ -11,12 +13,16 @@ export class ProductController {
     constructor(private productService : ProductService){}
 
     @Get()
-    async getAllProducts() : Promise<Product[]>{
-        return this.productService.findAll()
+    @ApiQuery({name : 'keyword' , required : false})
+    // @UseGuards(AuthGuard())
+    @ApiBearerAuth()
+    async getAllProducts( @Query() query : ExpressQuery ) : Promise<Product[]>{
+        return this.productService.findAll(query)
     }
 
     @Post()
     @ApiBody({type : [CreateProductDTO]})
+    @UseGuards(AuthGuard())
     async addproduct (@Body() product : CreateProductDTO) : Promise<Product>{
         return this.productService.addproduct(product)
     }
